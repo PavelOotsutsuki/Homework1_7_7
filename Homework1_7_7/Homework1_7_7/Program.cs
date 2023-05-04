@@ -34,8 +34,9 @@ namespace Homework1_7_7
             Console.WriteLine("2-я бригада:");
             ShowSoldiers(soldiers2);
             Console.WriteLine(new string('-', 20));
-            soldiers2.AddRange(soldiers1.Where(soldier => soldier.Name.ToUpper().StartsWith('Б')).ToList());
-            soldiers1 = soldiers1.Where(soldier => !soldier.Name.ToUpper().StartsWith('Б')).ToList();
+            var reassignmentsSoldiers = soldiers1.Where(soldier => soldier.Name.ToUpper().StartsWith('Б')).ToList();
+            soldiers2 = soldiers2.Concat(reassignmentsSoldiers).ToList();
+            soldiers1 = soldiers1.Except(reassignmentsSoldiers).ToList();
             Console.WriteLine("ПОСЛЕ:");
             Console.WriteLine("1-я бригада: ");
             ShowSoldiers(soldiers1);
